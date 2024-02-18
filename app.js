@@ -4,9 +4,7 @@ var app = express();
 var bodyParser = require('body-parser')
 var morgan = require('morgan')
 const mongoose = require('mongoose')
-
 require('dotenv/config')
-const userAuth = require('./helpers/jwt')
 const auth = require('./helpers/jwt')
 // const errorHandler = require('./helpers/error-handler')
 const errorHandler = require('./Middlewares/errorHandler')
@@ -28,6 +26,7 @@ app.use(cors())
 app.options('*',cors())
 
 var api = process.env.API_URL
+const NODE_ENV = process.env.NODE_ENV
 
 //middle ware 
 app.use(bodyParser.json())
@@ -71,6 +70,5 @@ mongoose.connect(`${uri}`,{
 
 
 app.listen(3000, ()=>{
-    console.log(uri)
-    console.log('Server is listning to http://localhost:3000 ')
+    console.log(`Server is running in ${NODE_ENV}`)
 })

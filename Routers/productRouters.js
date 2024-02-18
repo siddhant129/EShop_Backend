@@ -18,7 +18,7 @@ router
     .get('/:id', getProduct)
 
     //To create new products
-    .post('/', createProduct)
+    .post('/createProduct', createProduct)
 
     //To delete product
     .delete('/:id', deleteProduct)

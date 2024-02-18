@@ -2,31 +2,6 @@ const expressJwt = require("express-jwt")
 const jwt = require('jsonwebtoken')
 const secret = process.env.secret
 const api = process.env.API_URL
-function userAuth() {
-    // var flag = isRevoked
-    if (isRevokedFun) {
-        console.log('hi')
-    }
-    console.log('isRevoked', isRevokedFun)
-
-    return expressJwt.expressjwt({
-        secret,
-        algorithms: ['HS256'],
-        getToken: (req, res, next) => {
-            console.log(req.authorization);
-        }
-        // isRevoked: isRevokedFun
-    }).unless({
-        path: [`${api}/user/login`,
-        `${api}/user/register`,
-        { url: /\/api\/v1\/products(.*)/, methods: ['GET', 'OPTIONS'] },
-        { url: /\/api\/v1\/category(.*)/, methods: ['GET'] },
-
-        ]
-    })
-}
-
-// 
 
 function auth() {
 
@@ -52,9 +27,6 @@ function auth() {
             }
             req.isAdmin = false
             return null
-        },
-        isRevoked : function isAdmin(req) {
-            return req.isAdmin
         }
     }).unless(
         {
@@ -77,5 +49,4 @@ async function isRevokedFun(req, payload) {
     return false
 }
 
-module.exports = userAuth;
 module.exports = auth;
