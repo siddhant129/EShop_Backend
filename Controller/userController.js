@@ -83,7 +83,7 @@ exports.loginUser = asyncHandler(
                     isAdmin: user.isAdmin
                 },
                 sceret,
-                { expiresIn: '1h' }
+                { expiresIn: '3h' }
             )
             return res.status(200).json({success : true, message: "User authenticated", email: user.email, token: token })
         } else {
